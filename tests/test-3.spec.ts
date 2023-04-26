@@ -1,0 +1,31 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://trello.com/');
+  await page.getByTestId('bignav').getByRole('link', { name: 'Log in' }).click();
+  await page.getByPlaceholder('Укажите адрес электронной почты').click();
+  await page.getByPlaceholder('Укажите адрес электронной почты').fill('blackchasmfel@gmail.com');
+  await page.getByRole('button', { name: 'Продолжить' }).click();
+  await page.getByPlaceholder('Введите пароль').click();
+  await page.getByPlaceholder('Введите пароль').fill('Cherrytest1980');
+  await page.getByPlaceholder('Введите пароль').press('Enter');
+  await page.getByRole('link', { name: 'FOR OTUS ' }).click();
+  await page.getByRole('link', { name: ' Card for testing' }).click();
+  await page.getByTestId('card-back-new-comment-input-skeleton').click();
+  await page.getByRole('textbox', { name: 'Main content area, start typing to enter text.' }).fill('\n');
+  await page.getByRole('textbox', { name: 'Main content area, start typing to enter text.' }).press('CapsLock');
+  await page.getByRole('textbox', { name: 'Main content area, start typing to enter text.' }).fill('пппппппппппппппп');
+  await page.getByTestId('card-back-comment-save-button').click();
+  await page.getByRole('button', { name: 'Вы подписаны на уведомления об обновлениях этой карточки. Нажмите, чтобы отменить подписку.' }).click();
+  await page.getByRole('link', { name: ' Архивация' }).click();
+  await page.getByText('Архивная карточка.').click();
+  await page.getByTestId('card-back-archive-banner').click();
+  await page.getByRole('link', { name: ' Вернуть' }).click();
+  await page.getByRole('link', { name: ' Архивация' }).click();
+  await page.getByRole('link', { name: ' Удалить' }).click();
+  await page.getByRole('button', { name: 'Удалить' }).click();
+  await page.getByTestId('card-template-list-button').first().click();
+  await page.locator('div').filter({ hasText: /^Нужно сделатьНужно сделать0 карточекДобавить карточку$/ }).first().click();
+  await page.getByTestId('card-template-list-button').first().click();
+  await page.getByText('У вас пока нет шаблонов. Создайте шаблон, чтобы вам было проще копировать карточ').click();
+});
